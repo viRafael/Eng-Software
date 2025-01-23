@@ -1,0 +1,183 @@
+                            +--------------------------+
+                            |       ConsoleHandler     |
+                            |--------------------------|
+                            | - processInput()         |
+                            | - run()                  |
+                            +-----------+--------------+
+                                        |
+                                        | cria (via CommandFactory)
+                                        v
+                                +------------------+
+                                |    <<interface>> |
+                                |      Command     |
+                                |------------------|
+                                | + execute()      |
+                                +---------+--------+
+                                          ^
+                     +---------------------+---------------------+
+                     |                    |                     |
+          +--------------------+  +--------------------+  +--------------------+
+          | EmprestimoCommand |  | DevolucaoCommand   |  | ReservaCommand     |
+          +--------------------+  +--------------------+  +--------------------+
+          | + execute()       |  | + execute()        |  | + execute()        |
+          +--------------------+  +--------------------+  +--------------------+
+
+          +--------------------+  +--------------------+  +--------------------+
+          | ObservacaoCommand |  | ConsultaLivroCommand| | ConsultaUsuarioCmd |
+          +--------------------+  +--------------------+  +--------------------+
+          | + execute()       |  | + execute()        |  | + execute()        |
+          +--------------------+  +--------------------+  +--------------------+
+
+          +--------------------------+  
+          | ConsultaNotificacoesCmd |
+          +--------------------------+  
+          | + execute()             |
+          +--------------------------+
+
+          +--------------------+
+          |     SairCommand   |
+          +--------------------+
+          | + execute()       |
+          +--------------------+
+
+
+   --------------------------------------------------------------
+
+                                (Usa Singleton)
+                            +-------------------+
+                            |   LibraryData     |  
+                            |-------------------|
+                            | - users: List<User>   
+                            | - books: List<Book>   
+                            |-------------------|
+                            | + getInstance(): LibraryData
+                            | + getUsers(): List<User>
+                            | + getBooks(): List<Book>
+                            | + findUserById()...
+                            | + findBookById()...
+                            +-------------------+
+
+   --------------------------------------------------------------
+                            
+                            +------------------+
+                            |      User        |<<abstract>>
+                            |------------------|
+                            | - code: int      |
+                            | - name: String   |
+                            | - loans: List<Loan>
+                            | - reservations: List<Reservation>
+                            |------------------|
+                            | + getLoanPolicy(): LoanPolicy  (polimorfismo)
+                            | + addLoan(Loan)                
+                            | + addReservation(Reservation)  
+                            | + getName()                    
+                            +--------+---------+
+                                     ^
+            +------------------------+-------------------------+
+            |                       |                         |
++------------------------+ +-------------------------+ +-------------------------+
+| UndergradStudent       | | PostgradStudent        | | Professor               |
++------------------------+ +-------------------------+ +-------------------------+
+| (tem LoanPolicy do     | | (tem LoanPolicy do     | | (tem LoanPolicy do      |
+|  tipo Undergrad)       | |  tipo Postgrad)        | |  tipo Professor)        |
+| (implementa Observer?) | | (implementa Observer?) | | implements Observer     |
++------------------------+ +-------------------------+ +------------+------------+
+                                                                  |
+                                                                  | notifica()
+                                                                  v
+                                                           +----------------+
+                                                           | notifyObserver|
+                                                           +----------------+
+
+   --------------------------------------------------------------
+
+                         +---------------------+
+                         |   <<interface>>    |
+                         |    LoanPolicy      |
+                         |---------------------|
+                         | + canLoan(...)     |
+                         | + calcDueDate(...) |
+                         +---------+-----------+
+                                   ^
+           +-----------------------+-----------------------+
+           |                       |                       |
++-----------------------+  +-----------------------+ +------------------------+
+| UndergradLoanPolicy   |  | PostgradLoanPolicy   | | ProfessorLoanPolicy    |
++-----------------------+  +-----------------------+ +------------------------+
+| + canLoan(...)        |  | + canLoan(...)        | | + canLoan(...)        |
+| + calcDueDate(...)    |  | + calcDueDate(...)    | | + calcDueDate(...)    |
++-----------------------+  +-----------------------+ +------------------------+
+
+   --------------------------------------------------------------
+                            
+                            +---------------+
+                            |     Book      |
+                            +---------------+
+                            | - code: int   |
+                            | - title: String
+                            | - publisher: String
+                            | - authors: List<String>
+                            | - edition: int
+                            | - year: int
+                            | - exemplars: List<Exemplar>
+                            | - reservations: List<Reservation>
+                            | - observers: List<Observer>
+                            +---------------+
+                            | + registerObserver(Observer) 
+                            | + removeObserver(Observer)   
+                            | + notifyObservers()  // Se reservas > 2
+                            +---------------+
+
+   --------------------------------------------------------------
+
+                            +-------------------+
+                            |    Exemplar      |
+                            +-------------------+
+                            | - codeExemplar: int
+                            | - status: ExemplarStatus (ENUM: DISPONIVEL, EMPRESTADO)
+                            | - book: Book
+                            | - currentLoan: Loan (se estiver emprestado)
+                            +-------------------+
+                            | + getStatus()     |
+                            | + setStatus(...)  |
+                            +-------------------+
+
+   --------------------------------------------------------------
+
+                            +------------------+
+                            |   Reservation    |
+                            +------------------+
+                            | - user: User     |
+                            | - book: Book     |
+                            | - date: Date     |
+                            +------------------+
+
+   --------------------------------------------------------------
+
+                            +------------------+
+                            |      Loan        |
+                            +------------------+
+                            | - user: User     |
+                            | - exemplar: Exemplar
+                            | - startDate: Date
+                            | - dueDate: Date
+                            | - endDate: Date (null se não devolvido ainda)
+                            +------------------+
+
+   --------------------------------------------------------------
+
+                           +-------------------+
+                           |   <<interface>>   |
+                           |     Observer      |
+                           +-------------------+
+                           | + update(Book b)  |
+                           +-------------------+
+                                     ^
+                                     |
+                              +---------------+
+                              |  Professor    | (exemplo)
+                              +---------------+
+                              | - notificationCount: int
+                              | + update(Book b)          
+                              | + getNotificationCount()   
+                              +---------------+
