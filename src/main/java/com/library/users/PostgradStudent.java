@@ -10,7 +10,6 @@ public class PostgradStudent extends User {
         super(code, name);
     }
 
-    @Override
     public LoanPolicy getLoanPolicy() {
         return loanPolicy;
     }

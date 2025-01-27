@@ -73,5 +73,10 @@ public class Book {
     public List<Exemplar> getExemplars() {
         return exemplars;
     }
+
+    public Exemplar findAvailableExemplar() {
+        // TODO
+        return null;
+    }
 }
 

@@ -1,5 +1,6 @@
 package main.java.com.library.users;
 
+import main.java.com.library.domain.Book;
 import main.java.com.library.domain.Loan;
 import main.java.com.library.domain.Reservation;
 import main.java.com.library.policies.LoanPolicy;
@@ -20,9 +21,6 @@ public class User {
         this.loans = new ArrayList<>();
         this.reservations = new ArrayList<>();
     }
-
-    // Padrão Strategy
-    public abstract LoanPolicy getLoanPolicy();
 
     // Métodos GET e SET
     public int getCode() {
@@ -47,5 +45,10 @@ public class User {
 
     public List<Reservation> getReservations() {
         return reservations;
+    }
+
+    public LoanPolicy findLoanByBook(Book book) {
+        // TODO
+        return null;
     }
 }

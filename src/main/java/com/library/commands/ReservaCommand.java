@@ -3,8 +3,8 @@ package main.java.com.library.commands;
 import main.java.com.library.app.CarregadorParametros;
 import main.java.com.library.domain.Book;
 import main.java.com.library.domain.Reservation;
-import main.java.com.library.domain.User;
 import main.java.com.library.repository.LibraryData;
+import main.java.com.library.users.User;
 
 import java.time.LocalDate;
 

@@ -14,7 +14,6 @@ public class Professor extends User implements Observer {
         super(code, name);
     }
 
-    @Override
     public LoanPolicy getLoanPolicy() {
         return loanPolicy;
     }

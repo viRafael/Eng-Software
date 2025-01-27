@@ -19,17 +19,25 @@ public class LibraryData {
 
     // Métodos Utilitários
     public User findUserById(int userId) {
-        // TODO
+        for (User user : this.users) {
+            if (user.getCode() == userId){
+                return user;
+            }
+        }
         return null;
     }
 
     public Book findBookById(int bookId) {
-        // TODO
+        for (Book book : this.books) {
+            if (book.getCode() == bookId){
+                return book;
+            }
+        }
         return null;
     }
 
     // Métodos GET e SET
-    public LibraryData getInstance() {
+    public static LibraryData getInstance() {
         if (instance == null) {
             instance = new LibraryData();
         }

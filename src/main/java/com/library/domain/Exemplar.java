@@ -30,4 +30,12 @@ public class Exemplar {
     public Loan getCurrentLoan() {
         return currentLoan;
     }
+
+    public void setStatus(ExemplarStatus status) {
+        this.status = status;
+    }
+
+    public void setCurrentLoan (Loan Loan) {
+        this.currentLoan = Loan;
+    }
 }

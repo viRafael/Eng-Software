@@ -1,4 +1,6 @@
 package main.java.com.library.app;
+import main.java.com.library.commands.Command;
+
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -21,13 +23,13 @@ public class ConsoleHandler {
                 continue;
             }
 
-            Comando cmd = CommandFactory.getCommand(command);
+            Command cmd = CommandFactory.getCommand(command);
             if (cmd == null) {
                 System.out.println("Comando não reconhecido.");
                 continue;
             }
 
-            cmd.executar(carregadorParametros);
+            cmd.execute(carregadorParametros);
 
             if (command.equals("sai")) break;
         }
