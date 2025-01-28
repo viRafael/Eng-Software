@@ -23,6 +23,10 @@ public class Exemplar {
         return status;
     }
 
+    public boolean isDisponivel() {
+        return status == ExemplarStatus.DISPONIVEL;
+    }
+
     public Book getBook() {
         return book;
     }

@@ -74,9 +74,14 @@ public class Book {
         return exemplars;
     }
 
-    public Exemplar findAvailableExemplar() {
-        // TODO
-        return null;
+    public List<Exemplar> findAvailableExemplar() {
+        List<Exemplar> exemplaresDisponiveis = new ArrayList<>();
+        for(Exemplar exemplar : exemplars) {
+            if(exemplar.isDisponivel()){
+                exemplaresDisponiveis.add(exemplar);
+            }
+        }
+        return exemplaresDisponiveis;
     }
 }
 

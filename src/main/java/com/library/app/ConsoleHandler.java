@@ -7,10 +7,13 @@ public class ConsoleHandler {
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
+
         while (true) {
-            System.out.print("> ");
-            String line = scanner.nextLine().trim();
-            if (line.isEmpty()) continue;
+            System.out.print("Console> ");
+            String line = scanner.nextLine();
+
+            if (line.isEmpty())
+                continue;
 
             String[] args = line.split(" ");
             String command = args[0];
