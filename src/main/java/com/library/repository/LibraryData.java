@@ -12,6 +12,7 @@ public class LibraryData {
     private List<User> users;
     private List<Book> books;
 
+    // Método Construtor
     private LibraryData() {
         this.users = new ArrayList<>();
         this.books = new ArrayList<>();

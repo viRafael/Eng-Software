@@ -14,7 +14,6 @@ public class UndergradLoanPolicy implements LoanPolicy{
 
     @Override
     public LocalDate calcDueDate(LocalDate startDate) {
-        // TODO
-        return null;
+        return startDate.plusDays(3);
     }
 }

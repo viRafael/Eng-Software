@@ -1,6 +1,5 @@
 package main.java.com.library.users;
 
-import main.java.com.library.domain.Book;
 import main.java.com.library.domain.Loan;
 import main.java.com.library.domain.Reservation;
 import main.java.com.library.policies.LoanPolicy;
@@ -9,46 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class User {
-    protected int code;
-    protected String name;
-    protected List<Loan> loans;
-    protected List<Reservation> reservations;
-
-    public User(int code, String name) {
-        this.code = code;
-        this.name = name;
-        this.loans = new ArrayList<>();
-        this.reservations = new ArrayList<>();
-    }
+public interface User {
+    List<Loan> loans = new ArrayList<Loan>();
+    List<Reservation> reservations = new ArrayList<Reservation>();
 
     // Métodos GET e SET
-    public int getCode() {
-        return code;
-    }
+    public void addLoan(Loan loan);
 
-    public String getName() {
-        return name;
-    }
+    public void addReservation(Reservation reservation);
 
-    public void addLoan(Loan loan) {
-        this.loans.add(loan);
-    }
+    public List<Loan> getLoans();
 
-    public void addReservation(Reservation reservation) {
-        this.reservations.add(reservation);
-    }
+    public List<Reservation> getReservations();
 
-    public List<Loan> getLoans() {
-        return loans;
-    }
+    public LoanPolicy getLoanPolicy();
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
+    public int getCode();
 
-    public LoanPolicy findLoanByBook(Book book) {
-        // TODO
-        return null;
-    }
+    public String getName();
 }
+ 
