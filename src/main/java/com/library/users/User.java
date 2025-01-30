@@ -1,27 +1,32 @@
 package main.java.com.library.users;
 
-import main.java.com.library.domain.Loan;
-import main.java.com.library.domain.Reservation;
-import main.java.com.library.policies.LoanPolicy;
+import main.java.com.library.domain.Emprestimo;
+import main.java.com.library.domain.Reserva;
+import main.java.com.library.policies.PoliticaEmprestimo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public interface User {
-    List<Loan> loans = new ArrayList<Loan>();
-    List<Reservation> reservations = new ArrayList<Reservation>();
+    List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+    List<Reserva> reservas = new ArrayList<Reserva>();
+
+    // Métodos Utilitarios
+    public boolean temEspacoParaLivro();
+
+    public boolean isDevedor();
 
     // Métodos GET e SET
-    public void addLoan(Loan loan);
+    public void addEmprestimo(Emprestimo loan);
 
-    public void addReservation(Reservation reservation);
+    public void addReserva(Reserva reserva);
 
-    public List<Loan> getLoans();
+    public List<Emprestimo> getEmprestimos();
 
-    public List<Reservation> getReservations();
+    public List<Reserva> getReservas();
 
-    public LoanPolicy getLoanPolicy();
+    public PoliticaEmprestimo getPoliticaEmprestimo();
 
     public int getCode();
 

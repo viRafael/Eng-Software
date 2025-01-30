@@ -2,10 +2,8 @@ package main.java.com.library.commands;
 
 import main.java.com.library.app.CarregadorParametros;
 import main.java.com.library.domain.Book;
-import main.java.com.library.domain.Exemplar;
-import main.java.com.library.domain.Loan;
 import main.java.com.library.users.User;
-import main.java.com.library.repository.LibraryData;
+import main.java.com.library.repository.BibliotecaDados;
 
 public class DevolucaoCommand implements Command {
 
@@ -14,7 +12,7 @@ public class DevolucaoCommand implements Command {
         int userId = Integer.parseInt(carregadorParametros.getParametroUm());
         int bookId = Integer.parseInt(carregadorParametros.getParametroDois());
 
-        LibraryData data = LibraryData.getInstance();
+        BibliotecaDados data = BibliotecaDados.getInstance();
         User user = data.findUserById(userId);
         Book book = data.findBookById(bookId);
 
@@ -23,7 +21,7 @@ public class DevolucaoCommand implements Command {
             return;
         }
 
-        Loan loan = user.findLoanByBook(book);
+        //Emprestimo loan = user.findLoanByBook(book);
         if (loan == null) {
             System.out.println("Devolução não realizada: O usuário não possui empréstimo em aberto deste livro.");
             return;

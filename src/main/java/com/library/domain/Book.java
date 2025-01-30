@@ -15,7 +15,7 @@ public class Book {
     private int year;
 
     private List<Exemplar> exemplars;
-    private List<Reservation> reservations;
+    private List<Reserva> reservas;
     private List<Observer> observers;
 
     // Métodos CONSTRUTOR
@@ -26,7 +26,7 @@ public class Book {
         this.edition = edition;
         this.year = year;
         this.exemplars = new ArrayList<>();
-        this.reservations = new ArrayList<>();
+        this.reservas = new ArrayList<>();
         this.observers = new ArrayList<>();
     }
 
@@ -41,7 +41,7 @@ public class Book {
 
     // Chamado quando se faz uma nova reserva
     public void checkNotify() {
-        if (reservations.size() > 2) {
+        if (reservas.size() > 2) {
             notifyObservers();
         }
     }
@@ -52,8 +52,8 @@ public class Book {
         }
     }
 
-    public void addReservation(Reservation r) {
-        this.reservations.add(r);
+    public void addReservation(Reserva r) {
+        this.reservas.add(r);
         checkNotify();
     }
 
@@ -66,11 +66,11 @@ public class Book {
         return title;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
+    public List<Reserva> getReservas() {
+        return reservas;
     }
 
-    public List<Exemplar> getExemplars() {
+    public List<Exemplar> getExemplares() {
         return exemplars;
     }
 

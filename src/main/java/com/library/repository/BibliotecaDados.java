@@ -6,14 +6,14 @@ import main.java.com.library.domain.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryData {
-    private static LibraryData instance;
+public class BibliotecaDados {
+    private static BibliotecaDados instance;
 
     private List<User> users;
     private List<Book> books;
 
-    // Método Construtor
-    private LibraryData() {
+    // Métodos Construtor
+    private BibliotecaDados() {
         this.users = new ArrayList<>();
         this.books = new ArrayList<>();
     }
@@ -38,9 +38,9 @@ public class LibraryData {
     }
 
     // Métodos GET e SET
-    public static LibraryData getInstance() {
+    public static BibliotecaDados getInstance() {
         if (instance == null) {
-            instance = new LibraryData();
+            instance = new BibliotecaDados();
         }
         return instance;
     }

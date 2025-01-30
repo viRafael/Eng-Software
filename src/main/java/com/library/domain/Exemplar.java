@@ -6,7 +6,7 @@ public class Exemplar {
     private int codeExemplar;
     private ExemplarStatus status;
     private Book book;
-    private Loan currentLoan; // se estiver emprestado
+    private Emprestimo currentLoan; // se estiver emprestado
 
     public Exemplar(int codeExemplar, Book book) {
         this.codeExemplar = codeExemplar;
@@ -31,7 +31,7 @@ public class Exemplar {
         return book;
     }
 
-    public Loan getCurrentLoan() {
+    public Emprestimo getCurrentLoan() {
         return currentLoan;
     }
 
@@ -39,7 +39,7 @@ public class Exemplar {
         this.status = status;
     }
 
-    public void setCurrentLoan (Loan Loan) {
+    public void setCurrentLoan (Emprestimo Loan) {
         this.currentLoan = Loan;
     }
 }

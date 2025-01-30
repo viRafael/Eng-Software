@@ -1,31 +1,30 @@
 package main.java.com.library.users;
 
-import main.java.com.library.domain.Book;
 import main.java.com.library.domain.Emprestimo;
 import main.java.com.library.domain.Reserva;
-import main.java.com.library.observer.Observer;
-import main.java.com.library.policies.ProfessorPoliticaEmprestimo;
 import main.java.com.library.policies.PoliticaEmprestimo;
+import main.java.com.library.policies.PosGraduacaoPoliticaEmprestimo;
 
 import java.util.List;
 
-
-public class Professor implements User, Observer {
+public class PosGraduacao implements User {
     private int code;
     private String name;
 
-    private PoliticaEmprestimo politicaEmprestimo = new ProfessorPoliticaEmprestimo();
-    private int notificationCount = 0;
+    private final PoliticaEmprestimo politicaEmprestimo = new PosGraduacaoPoliticaEmprestimo();
 
     // Métodos Construtor
-    public Professor(int code, String name) {
+    public PosGraduacao(int code, String name) {
         this.code = code;
         this.name = name;
     }
 
-    //Métodos Utilitários
+    // Métodos Utilitários
     @Override
     public boolean temEspacoParaLivro() {
+        if(emprestimos.size() >= 3){
+            return false;
+        }
         return true;
     }
 
@@ -73,17 +72,5 @@ public class Professor implements User, Observer {
     @Override
     public String getName() {
         return this.name;
-    }
-
-    // Implementação do método do Observer
-    @Override
-    public void update(Book book) {
-        notificationCount++;
-        // Exemplo de log ou mensagem:
-        // System.out.println("Professor " + name + " notificado sobre reservas do livro: " + book.getTitle());
-    }
-
-    public int getNotificationCount() {
-        return notificationCount;
     }
 }

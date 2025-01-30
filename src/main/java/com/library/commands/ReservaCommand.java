@@ -2,8 +2,8 @@ package main.java.com.library.commands;
 
 import main.java.com.library.app.CarregadorParametros;
 import main.java.com.library.domain.Book;
-import main.java.com.library.domain.Reservation;
-import main.java.com.library.repository.LibraryData;
+import main.java.com.library.domain.Reserva;
+import main.java.com.library.repository.BibliotecaDados;
 import main.java.com.library.users.User;
 
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ public class ReservaCommand implements Command {
         int userId = Integer.parseInt(carregadorParametros.getParametroUm());
         int bookId = Integer.parseInt(carregadorParametros.getParametroDois());
 
-        LibraryData data = LibraryData.getInstance();
+        BibliotecaDados data = BibliotecaDados.getInstance();
         User user = data.findUserById(userId);
         Book book = data.findBookById(bookId);
 
@@ -23,14 +23,14 @@ public class ReservaCommand implements Command {
             return;
         }
 
-        if (user.getReservations().size() >= 3) {
+        if (user.getReservas().size() >= 3) {
             System.out.println("Reserva não realizada: Limite de reservas simultâneas atingido.");
             return;
         }
 
-        Reservation reservation = new Reservation(user, book, LocalDate.now());
-        user.addReservation(reservation);
-        book.addReservation(reservation);
+        Reserva reserva = new Reserva(user, book);
+        user.addReserva(reserva);
+        book.addReservation(reserva);
 
         System.out.println("Reserva realizada com sucesso por " + user.getName() + " - Livro: " + book.getTitle());
     }

@@ -4,15 +4,15 @@ import main.java.com.library.users.User;
 
 import java.time.LocalDate;
 
-public class Reservation {
+public class Reserva {
     private User user;
     private Book book;
-    private LocalDate date;
+    private LocalDate dataReserva;
 
-    public Reservation(User user, Book book, LocalDate date) {
+    public Reserva(User user, Book book) {
         this.user = user;
         this.book = book;
-        this.date = date;
+        this.dataReserva = LocalDate.now();
     }
 
     // Métodos GET
@@ -25,6 +25,6 @@ public class Reservation {
     }
 
     public LocalDate getDate() {
-        return date;
+        return dataReserva;
     }
 }

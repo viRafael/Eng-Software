@@ -4,21 +4,22 @@ import main.java.com.library.users.User;
 
 import java.time.LocalDate;
 
-public class Loan {
+public class Emprestimo {
     private User user;
     private Exemplar exemplar;
     private LocalDate startDate;
     private LocalDate dueDate;
     private LocalDate endDate; // se nulo, empréstimo em aberto
 
-    public Loan(User user, Exemplar exemplar, LocalDate startDate, LocalDate dueDate) {
+    public Emprestimo(User user, Exemplar exemplar, LocalDate startDate, LocalDate dueDate) {
         this.user = user;
         this.exemplar = exemplar;
         this.startDate = startDate;
         this.dueDate = dueDate;
     }
+
     // Métodos Utilitários
-    public Loan findLoanByBook(Book book) {
+    public Emprestimo findLoanByBook(Book book) {
         // TODO
         return null;
     }
@@ -26,6 +27,10 @@ public class Loan {
     public void finalizeLoan(Book book) {
         // TODO
         return;
+    }
+
+    public boolean estaAtrasado() {
+        return LocalDate.now().isAfter(dueDate);
     }
 
     // Métodos GET e SET
