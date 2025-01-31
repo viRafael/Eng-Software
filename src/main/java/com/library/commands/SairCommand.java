@@ -5,6 +5,7 @@ import main.java.com.library.app.CarregadorParametros;
 public class SairCommand implements Command {
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
-
+        System.out.println("Comando saída, encerrando o sistema...");
+        return;
     }
 }

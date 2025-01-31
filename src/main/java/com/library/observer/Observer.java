@@ -1,7 +1,7 @@
 package main.java.com.library.observer;
 
-import main.java.com.library.domain.Book;
+import main.java.com.library.domain.Livro;
 
 public interface Observer {
-    void update(Book book);
+    void update(Livro livro);
 }

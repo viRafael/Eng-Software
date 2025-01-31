@@ -20,6 +20,8 @@ public interface User {
     // Métodos GET e SET
     public void addEmprestimo(Emprestimo loan);
 
+    public void removerEmprestimo(Emprestimo loan);
+
     public void addReserva(Reserva reserva);
 
     public List<Emprestimo> getEmprestimos();

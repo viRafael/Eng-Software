@@ -1,6 +1,6 @@
 package main.java.com.library.policies;
 
-import main.java.com.library.domain.Book;
+import main.java.com.library.domain.Livro;
 import main.java.com.library.domain.Exemplar;
 import main.java.com.library.domain.Reserva;
 import main.java.com.library.domain.enums.ExemplarStatus;
@@ -10,33 +10,38 @@ import java.time.LocalDate;
 
 public class GraduacaoPoliticaEmprestimo implements PoliticaEmprestimo {
     @Override
-    public boolean podePegarEmprestado(User user, Book book) {
+    public boolean podePegarEmprestado(User user, Livro livro) {
+        // Verifica se o usuário é devedor
         if (user.isDevedor()) {
             return false;
         }
 
+        // Verifica se o usuário tem espaço para pegar emprestado
         if (!user.temEspacoParaLivro()) {
             return false;
         }
 
+        // Verifica se o User já tem o livro emprestado
         int numLivroEmprestado = 0;
-        for (Exemplar exemplar : book.getExemplares()) {
+        for (Exemplar exemplar : livro.getExemplares()) {
             if (exemplar.getStatus() == ExemplarStatus.EMPRESTADO) {
-                if (exemplar.getCurrentLoan().getUser().equals(user)) {
+                if (exemplar.getEmprestimoAtual().getUser().equals(user)) {
                     return false;
                 }
                 numLivroEmprestado += 1;
             }
         }
-        if (numLivroEmprestado == book.getExemplares().size()) {
+        if (numLivroEmprestado == livro.getExemplares().size()) {
             return false;
         }
 
-        if (book.getReservas().size() > book.getExemplares().size() - numLivroEmprestado) {
+        // Verifica se tem um exemplar disponível
+        if (livro.getReservas().size() > livro.getExemplares().size() - numLivroEmprestado) {
             return false;
         }
 
-        for (Reserva reserva : book.getReservas()) {
+        // Verifica se o User já reservou o livro
+        for (Reserva reserva : livro.getReservas()) {
             if (reserva.getUser().equals(user)) {
                 return true;
             }

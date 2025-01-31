@@ -6,12 +6,12 @@ import java.time.LocalDate;
 
 public class Reserva {
     private User user;
-    private Book book;
+    private Livro livro;
     private LocalDate dataReserva;
 
-    public Reserva(User user, Book book) {
+    public Reserva(User user, Livro livro) {
         this.user = user;
-        this.book = book;
+        this.livro = livro;
         this.dataReserva = LocalDate.now();
     }
 
@@ -20,8 +20,8 @@ public class Reserva {
         return user;
     }
 
-    public Book getBook() {
-        return book;
+    public Livro getBook() {
+        return livro;
     }
 
     public LocalDate getDate() {

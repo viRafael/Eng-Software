@@ -19,14 +19,13 @@ public class Emprestimo {
     }
 
     // Métodos Utilitários
-    public Emprestimo findLoanByBook(Book book) {
+    public Emprestimo findLoanByBook(Livro livro) {
         // TODO
         return null;
     }
 
-    public void finalizeLoan(Book book) {
-        // TODO
-        return;
+    public void finalizeLoan(Livro livro) {
+        user.removerEmprestimo(Emprestimo.this);
     }
 
     public boolean estaAtrasado() {
@@ -50,11 +49,11 @@ public class Emprestimo {
         this.exemplar = exemplar;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDate getDataEmprestimo() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void getDataEmprestimo(LocalDate startDate) {
         this.startDate = startDate;
     }
 
@@ -66,7 +65,7 @@ public class Emprestimo {
         this.dueDate = dueDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDate getDataDevolucao() {
         return endDate;
     }
 

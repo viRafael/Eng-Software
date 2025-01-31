@@ -44,6 +44,10 @@ public class AlunoGraduacao implements User {
         emprestimos.add(loan);
     }
 
+    public void removerEmprestimo(Emprestimo loan) {
+        emprestimos.remove(loan);
+    }
+
     @Override
     public void addReserva(Reserva reserva) {
         reservas.add(reserva);

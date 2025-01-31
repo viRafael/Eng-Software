@@ -1,6 +1,6 @@
 package main.java.com.library.policies;
 
-import main.java.com.library.domain.Book;
+import main.java.com.library.domain.Livro;
 import main.java.com.library.domain.Exemplar;
 import main.java.com.library.domain.Reserva;
 import main.java.com.library.domain.enums.ExemplarStatus;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class PosGraduacaoPoliticaEmprestimo implements PoliticaEmprestimo {
     @Override
-    public boolean podePegarEmprestado(User user, Book book) {
+    public boolean podePegarEmprestado(User user, Livro livro) {
         if (user.isDevedor()) {
             return false;
         }
@@ -20,23 +20,23 @@ public class PosGraduacaoPoliticaEmprestimo implements PoliticaEmprestimo {
         }
 
         int numLivroEmprestado = 0;
-        for (Exemplar exemplar : book.getExemplares()) {
+        for (Exemplar exemplar : livro.getExemplares()) {
             if (exemplar.getStatus() == ExemplarStatus.EMPRESTADO) {
-                if (exemplar.getCurrentLoan().getUser().equals(user)) {
+                if (exemplar.getEmprestimoAtual().getUser().equals(user)) {
                     return false;
                 }
                 numLivroEmprestado += 1;
             }
         }
-        if (numLivroEmprestado == book.getExemplares().size()) {
+        if (numLivroEmprestado == livro.getExemplares().size()) {
             return false;
         }
 
-        if (book.getReservas().size() > book.getExemplares().size() - numLivroEmprestado) {
+        if (livro.getReservas().size() > livro.getExemplares().size() - numLivroEmprestado) {
             return false;
         }
 
-        for (Reserva reserva : book.getReservas()) {
+        for (Reserva reserva : livro.getReservas()) {
             if (reserva.getUser().equals(user)) {
                 return true;
             }

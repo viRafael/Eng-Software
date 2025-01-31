@@ -48,7 +48,7 @@
                             |   LibraryData     |  
                             |-------------------|
                             | - users: List<User>   
-                            | - books: List<Book>   
+                            | - livros: List<Book>
                             |-------------------|
                             | + getInstance(): LibraryData
                             | + getUsers(): List<User>
@@ -135,7 +135,7 @@
                             +-------------------+
                             | - codeExemplar: int
                             | - status: ExemplarStatus (ENUM: DISPONIVEL, EMPRESTADO)
-                            | - book: Book
+                            | - livro: Book
                             | - currentLoan: Loan (se estiver emprestado)
                             +-------------------+
                             | + getStatus()     |
@@ -148,7 +148,7 @@
                             |   Reservation    |
                             +------------------+
                             | - user: User     |
-                            | - book: Book     |
+                            | - livro: Book     |
                             | - date: Date     |
                             +------------------+
 

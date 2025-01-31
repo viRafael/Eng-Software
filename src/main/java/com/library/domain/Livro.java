@@ -5,7 +5,7 @@ import main.java.com.library.observer.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Livro {
     // Atributos
     private int code;
     private String title;
@@ -19,7 +19,7 @@ public class Book {
     private List<Observer> observers;
 
     // Métodos CONSTRUTOR
-    public Book(int code, String title, String publisher, List<String> authors, int edition, int year) {
+    public Livro(int code, String title, String publisher, List<String> authors, int edition, int year) {
         this.code = code;
         this.title = title;
         this.authors = authors;
@@ -31,6 +31,17 @@ public class Book {
     }
 
     // Métodos Utilitários
+    public List<Exemplar> findAvailableExemplar() {
+        List<Exemplar> exemplaresDisponiveis = new ArrayList<>();
+        for(Exemplar exemplar : exemplars) {
+            if(exemplar.isDisponivel()){
+                exemplaresDisponiveis.add(exemplar);
+            }
+        }
+        return exemplaresDisponiveis;
+    }
+
+    // Métodos de Observer
     public void registerObserver(Observer obs) {
         observers.add(obs);
     }
@@ -52,7 +63,7 @@ public class Book {
         }
     }
 
-    public void addReservation(Reserva r) {
+    public void addReserva(Reserva r) {
         this.reservas.add(r);
         checkNotify();
     }
@@ -72,16 +83,6 @@ public class Book {
 
     public List<Exemplar> getExemplares() {
         return exemplars;
-    }
-
-    public List<Exemplar> findAvailableExemplar() {
-        List<Exemplar> exemplaresDisponiveis = new ArrayList<>();
-        for(Exemplar exemplar : exemplars) {
-            if(exemplar.isDisponivel()){
-                exemplaresDisponiveis.add(exemplar);
-            }
-        }
-        return exemplaresDisponiveis;
     }
 }
 

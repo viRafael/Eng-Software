@@ -1,6 +1,6 @@
 package main.java.com.library.users;
 
-import main.java.com.library.domain.Book;
+import main.java.com.library.domain.Livro;
 import main.java.com.library.domain.Emprestimo;
 import main.java.com.library.domain.Reserva;
 import main.java.com.library.observer.Observer;
@@ -45,6 +45,10 @@ public class Professor implements User, Observer {
         emprestimos.add(loan);
     }
 
+    public void removerEmprestimo(Emprestimo loan) {
+        emprestimos.remove(loan);
+    }
+
     @Override
     public void addReserva(Reserva reserva) {
         reservas.add(reserva);
@@ -77,10 +81,8 @@ public class Professor implements User, Observer {
 
     // Implementação do método do Observer
     @Override
-    public void update(Book book) {
+    public void update(Livro livro) {
         notificationCount++;
-        // Exemplo de log ou mensagem:
-        // System.out.println("Professor " + name + " notificado sobre reservas do livro: " + book.getTitle());
     }
 
     public int getNotificationCount() {

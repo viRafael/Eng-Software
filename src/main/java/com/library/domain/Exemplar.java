@@ -5,17 +5,17 @@ import main.java.com.library.domain.enums.ExemplarStatus;
 public class Exemplar {
     private int codeExemplar;
     private ExemplarStatus status;
-    private Book book;
-    private Emprestimo currentLoan; // se estiver emprestado
+    private Livro livro;
+    private Emprestimo emprestimoAtual; // se estiver emprestado
 
-    public Exemplar(int codeExemplar, Book book) {
+    public Exemplar(int codeExemplar, Livro livro) {
         this.codeExemplar = codeExemplar;
-        this.book = book;
+        this.livro = livro;
         this.status = ExemplarStatus.DISPONIVEL;
     }
 
     //Métodos GET e SET
-    public int getCodeExemplar() {
+    public int getCode() {
         return codeExemplar;
     }
 
@@ -27,19 +27,19 @@ public class Exemplar {
         return status == ExemplarStatus.DISPONIVEL;
     }
 
-    public Book getBook() {
-        return book;
+    public Livro getBook() {
+        return livro;
     }
 
-    public Emprestimo getCurrentLoan() {
-        return currentLoan;
+    public Emprestimo getEmprestimoAtual() {
+        return emprestimoAtual;
     }
 
     public void setStatus(ExemplarStatus status) {
         this.status = status;
     }
 
-    public void setCurrentLoan (Emprestimo Loan) {
-        this.currentLoan = Loan;
+    public void setEmprestimoAtual(Emprestimo Loan) {
+        this.emprestimoAtual = Loan;
     }
 }
