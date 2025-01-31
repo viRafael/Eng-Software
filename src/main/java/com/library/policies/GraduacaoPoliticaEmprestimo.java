@@ -25,7 +25,7 @@ public class GraduacaoPoliticaEmprestimo implements PoliticaEmprestimo {
         int numLivroEmprestado = 0;
         for (Exemplar exemplar : livro.getExemplares()) {
             if (exemplar.getStatus() == ExemplarStatus.EMPRESTADO) {
-                if (exemplar.getEmprestimoAtual().getUser().equals(user)) {
+                if (exemplar.getEmprestimoAtual().getUsuario().equals(user)) {
                     return false;
                 }
                 numLivroEmprestado += 1;

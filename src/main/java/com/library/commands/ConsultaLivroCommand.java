@@ -40,7 +40,7 @@ public class ConsultaLivroCommand implements Command  {
 
             if (exemplar.getStatus() == ExemplarStatus.EMPRESTADO) {
                 System.out.println("Status: Emprestado");
-                System.out.println("Usuário: " + exemplar.getEmprestimoAtual().getUser().getName());
+                System.out.println("Usuário: " + exemplar.getEmprestimoAtual().getUsuario().getName());
                 System.out.println("Data de empréstimo: " + exemplar.getEmprestimoAtual().getDataEmprestimo());
                 System.out.println("Data de devolução: " + exemplar.getEmprestimoAtual().getDataDevolucao());
             }

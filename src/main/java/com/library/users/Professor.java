@@ -39,7 +39,7 @@ public class Professor implements User, Observer {
         return false;
     }
 
-    // Métodos GET e SET
+    // Métotod add e remove
     @Override
     public void addEmprestimo(Emprestimo loan) {
         emprestimos.add(loan);
@@ -53,7 +53,8 @@ public class Professor implements User, Observer {
     public void addReserva(Reserva reserva) {
         reservas.add(reserva);
     }
-
+    
+    // Métodos GET
     @Override
     public List<Emprestimo> getEmprestimos() {
         return emprestimos;
@@ -79,13 +80,13 @@ public class Professor implements User, Observer {
         return this.name;
     }
 
+    public int getNotificationCount() {
+        return notificationCount;
+    }
+
     // Implementação do método do Observer
     @Override
     public void update(Livro livro) {
         notificationCount++;
-    }
-
-    public int getNotificationCount() {
-        return notificationCount;
     }
 }

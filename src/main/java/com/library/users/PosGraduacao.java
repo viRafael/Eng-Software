@@ -37,8 +37,8 @@ public class PosGraduacao implements User {
         }
         return false;
     }
-
-    // Métodos GET e SET
+    
+    // Métodos add e remove
     @Override
     public void addEmprestimo(Emprestimo loan) {
         emprestimos.add(loan);
@@ -52,8 +52,9 @@ public class PosGraduacao implements User {
     public void addReserva(Reserva reserva) {
         reservas.add(reserva);
     }
-
-    @Override
+    
+    // Métodos GET
+        @Override
     public List<Emprestimo> getEmprestimos() {
         return emprestimos;
     }

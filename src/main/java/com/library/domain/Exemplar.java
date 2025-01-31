@@ -15,16 +15,16 @@ public class Exemplar {
     }
 
     //Métodos GET e SET
+    public boolean isDisponivel() {
+        return status == ExemplarStatus.DISPONIVEL;
+    }
+
     public int getCode() {
         return codeExemplar;
     }
 
     public ExemplarStatus getStatus() {
         return status;
-    }
-
-    public boolean isDisponivel() {
-        return status == ExemplarStatus.DISPONIVEL;
     }
 
     public Livro getBook() {
@@ -35,11 +35,11 @@ public class Exemplar {
         return emprestimoAtual;
     }
 
-    public void setStatus(ExemplarStatus status) {
-        this.status = status;
+    public void setStatus(ExemplarStatus exemplarStatus) {
+        this.status = exemplarStatus;
     }
 
-    public void setEmprestimoAtual(Emprestimo Loan) {
-        this.emprestimoAtual = Loan;
+    public void setEmprestimoAtual(Emprestimo loan) {
+        this.emprestimoAtual = loan;
     }
 }

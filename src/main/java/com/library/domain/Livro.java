@@ -63,9 +63,14 @@ public class Livro {
         }
     }
 
+    // Métodos add
     public void addReserva(Reserva r) {
         this.reservas.add(r);
         checkNotify();
+    }
+
+    public void addExemplar(Exemplar exemplar) {
+        this.exemplars.add(exemplar);
     }
 
     // Métodos GET e SET

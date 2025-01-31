@@ -30,7 +30,7 @@ public class DevolucaoCommand implements Command {
         // Verifica se o emprestimo com esse user e book existe
         List<Exemplar> exemplaresDoLivro = livro.getExemplares();
         for (Exemplar exemplar : exemplaresDoLivro) {
-            if (exemplar.getEmprestimoAtual().getUser().equals(user)) {
+            if (exemplar.getEmprestimoAtual().getUsuario().equals(user)) {
                 // Se existir, finaliza o emprestimo e imprime mensagem de sucesso
                 exemplar.setStatus(ExemplarStatus.DISPONIVEL);
                 Emprestimo emprestimoAtual  = exemplar.getEmprestimoAtual();

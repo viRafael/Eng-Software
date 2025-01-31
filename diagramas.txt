@@ -147,7 +147,7 @@
                             +------------------+
                             |   Reservation    |
                             +------------------+
-                            | - user: User     |
+                            | - usuario: User     |
                             | - livro: Book     |
                             | - date: Date     |
                             +------------------+
@@ -157,7 +157,7 @@
                             +------------------+
                             |      Loan        |
                             +------------------+
-                            | - user: User     |
+                            | - usuario: User     |
                             | - exemplar: Exemplar
                             | - startDate: Date
                             | - dueDate: Date

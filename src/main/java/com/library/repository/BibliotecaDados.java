@@ -1,8 +1,6 @@
 package main.java.com.library.repository;
 
-import main.java.com.library.domain.Emprestimo;
 import main.java.com.library.domain.Livro;
-import main.java.com.library.domain.Reserva;
 import main.java.com.library.users.User;
 
 import java.util.ArrayList;
@@ -13,8 +11,6 @@ public class BibliotecaDados {
 
     private List<User> users;
     private List<Livro> livros;
-    private List<Emprestimo> emprestimos;
-    private List<Reserva> reservas;
 
     // Métodos Construtor
     private BibliotecaDados() {
@@ -48,6 +44,16 @@ public class BibliotecaDados {
         return null;
     }
 
+    // Métodos add
+    public void addUsuarios(User user) {
+        this.users.add(user);
+    }
+
+    public void addLivro(Livro livro) {
+        this.livros.add(livro);
+    }
+
+
     // Métodos GET e SET
     public List<User> getUsers() {
         return users;
@@ -57,20 +63,8 @@ public class BibliotecaDados {
         this.users = users;
     }
 
-    public List<Livro> getBooks() {
+    public List<Livro> getLivros() {
         return livros;
-    }
-
-    public void setBooks(List<Livro> livros) {
-        this.livros = livros;
-    }
-
-    public List<Emprestimo> getEmprestimos() {
-        return emprestimos;
-    }
-
-    public List<Reserva> getReservas() {
-        return reservas;
     }
 }
 

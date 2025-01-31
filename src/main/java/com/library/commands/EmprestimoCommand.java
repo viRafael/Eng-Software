@@ -51,7 +51,6 @@ public class EmprestimoCommand implements Command {
         exemplar.setEmprestimoAtual(loan);
         user.addEmprestimo(loan);
 
-        System.out.println("Empréstimo realizado com sucesso para "
-                + user.getName() + " - Livro: " + livro.getTitle());
+        System.out.println("Empréstimo realizado com sucesso para " + user.getName() + " do Livro: " + livro.getTitle());
     }
 }
