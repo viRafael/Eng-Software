@@ -6,13 +6,20 @@ import br.ufba.es.trabalho.biblioteca.app.CarregadorParametros;
 import br.ufba.es.trabalho.biblioteca.domain.Exemplar;
 import br.ufba.es.trabalho.biblioteca.domain.Livro;
 import br.ufba.es.trabalho.biblioteca.domain.Reserva;
+import br.ufba.es.trabalho.biblioteca.utils.Validador;
 
 import java.util.Optional;
 
 public class ConsultaLivroCommand implements Command  {
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
-        int codeLivro = Integer.parseInt(carregadorParametros.getParametroDois());
+        var codeLivroOpt = Validador.toInteger(carregadorParametros.getParametroUm());
+
+        if (codeLivroOpt.isEmpty()) {
+            System.out.println("Informe o número do código do livro!");
+            return;
+        }
+        int codeLivro = codeLivroOpt.get();
 
         BibliotecaDados dados = BibliotecaDados.getInstance();
         Optional<Livro> livroOpt =  dados.findBookById(codeLivro);

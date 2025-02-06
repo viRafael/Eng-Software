@@ -8,18 +8,28 @@ import br.ufba.es.trabalho.biblioteca.domain.Emprestimo;
 import br.ufba.es.trabalho.biblioteca.domain.Exemplar;
 import br.ufba.es.trabalho.biblioteca.domain.enums.ExemplarStatus;
 import br.ufba.es.trabalho.biblioteca.users.User;
+import br.ufba.es.trabalho.biblioteca.utils.Validador;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 public class EmprestimoCommand implements Command {
     public void execute(CarregadorParametros carregadorParametros) {
-        int codigoUser = Integer.parseInt(carregadorParametros.getParametroUm());
-        int codigoLivro = Integer.parseInt(carregadorParametros.getParametroDois());
+        var codeUsuarioOpt = Validador.toInteger(carregadorParametros.getParametroUm());
+        var codeLivroOpt = Validador.toInteger(carregadorParametros.getParametroDois());
+
+        if (codeUsuarioOpt.isEmpty()) {
+            System.out.println("Informe o número do código do usuário!");
+            return;
+        }
+        if (codeLivroOpt.isEmpty()) {
+            System.out.println("Informe o número do código do livro!");
+            return;
+        }
 
         BibliotecaDados data = BibliotecaDados.getInstance();
-        Optional<User> userOpt = data.findUserById(codigoUser);
-        Optional<Livro> livroOpt = data.findBookById(codigoLivro);
+        Optional<User> userOpt = data.findUserById(codeUsuarioOpt.get());
+        Optional<Livro> livroOpt = data.findBookById(codeLivroOpt.get());
 
         // Verifica se o usuário e o livro existem
         if (userOpt.isEmpty() || livroOpt.isEmpty()) {
