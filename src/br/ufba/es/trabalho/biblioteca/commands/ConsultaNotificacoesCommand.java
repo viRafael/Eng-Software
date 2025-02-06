@@ -28,11 +28,18 @@ public class ConsultaNotificacoesCommand implements Command {
         }
         User professor = professorOpt.get();
 
-        // TODO: Implementar a lógica de notificações
+        System.out.println("Notificacoes do usuario " + professor.getCode() + ":");
+        if (professor.getNotificacoes().isEmpty()) {
+            System.out.println("  - *Não há notificacoes!*");
+        } else {
+            professor.getNotificacoes().forEach(n -> System.out.println("  - " + n));
+        }
     }
 
     @Override
     public String getDescription() {
         return "Consulta as notificacoes de um usuário";
     }
+
+
 }

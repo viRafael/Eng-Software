@@ -1,9 +1,10 @@
 package br.ufba.es.trabalho.biblioteca.domain;
 
-import br.ufba.es.trabalho.biblioteca.observer.Observer;
+import br.ufba.es.trabalho.biblioteca.observer.BookObserver;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Livro {
     // Atributos
@@ -16,7 +17,7 @@ public class Livro {
 
     private List<Exemplar> exemplars;
     private List<Reserva> reservas;
-    private List<Observer> observers;
+    private List<BookObserver> observers;
 
     // Métodos CONSTRUTOR
     public Livro(int code, String title, String publisher, List<String> authors, int edition, int year) {
@@ -31,42 +32,29 @@ public class Livro {
     }
 
     // Métodos Utilitários
-    public List<Exemplar> findAvailableExemplar() {
-        List<Exemplar> exemplaresDisponiveis = new ArrayList<>();
-        for(Exemplar exemplar : exemplars) {
-            if(exemplar.isDisponivel()){
-                exemplaresDisponiveis.add(exemplar);
-            }
-        }
-        return exemplaresDisponiveis;
+    public Stream<Exemplar> exemplaresDisponiveis() {
+        return this.exemplars.stream().filter(Exemplar::isDisponivel);
     }
 
     // Métodos de Observer
-    public void registerObserver(Observer obs) {
+    public void registerObserver(BookObserver obs) {
         observers.add(obs);
     }
 
-    public void removeObserver(Observer obs) {
+    public void removeObserver(BookObserver obs) {
         observers.remove(obs);
     }
 
-    // Chamado quando se faz uma nova reserva
-    public void checkNotify() {
-        if (reservas.size() > 2) {
-            notifyObservers();
-        }
-    }
-
     private void notifyObservers() {
-        for (Observer obs : observers) {
-            obs.update(this);
+        for (BookObserver obs : observers) {
+            obs.onBookUpdate(this);
         }
     }
 
     // Métodos add
     public void addReserva(Reserva r) {
         this.reservas.add(r);
-        checkNotify();
+        notifyObservers();
     }
 
     public void addExemplar(Exemplar exemplar) {

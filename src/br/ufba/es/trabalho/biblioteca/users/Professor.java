@@ -3,19 +3,18 @@ package br.ufba.es.trabalho.biblioteca.users;
 import br.ufba.es.trabalho.biblioteca.domain.Emprestimo;
 import br.ufba.es.trabalho.biblioteca.domain.Livro;
 import br.ufba.es.trabalho.biblioteca.domain.Reserva;
-import br.ufba.es.trabalho.biblioteca.observer.Observer;
+import br.ufba.es.trabalho.biblioteca.observer.BookObserver;
 import br.ufba.es.trabalho.biblioteca.policies.PoliticaEmprestimo;
 import br.ufba.es.trabalho.biblioteca.policies.ProfessorPoliticaEmprestimo;
 
 import java.util.List;
 
 
-public class Professor implements User, Observer {
+public class Professor implements User {
     private int code;
     private String name;
 
     private PoliticaEmprestimo politicaEmprestimo = new ProfessorPoliticaEmprestimo();
-    private int notificationCount = 0;
 
     // Métodos Construtor
     public Professor(int code, String name) {
@@ -85,13 +84,10 @@ public class Professor implements User, Observer {
         return "Professor";
     }
 
-    public int getNotificationCount() {
-        return notificationCount;
-    }
-
-    // Implementação do método do Observer
     @Override
-    public void update(Livro livro) {
-        notificationCount++;
+    public void onBookUpdate(Livro livro) {
+        if (livro.getReservas().size() >= 2) {
+            this.adicionarNotificacao("O livro com código '" + livro.getCode() + "' possui agora " + livro.getReservas().size() + " reservas!");
+        }
     }
 }

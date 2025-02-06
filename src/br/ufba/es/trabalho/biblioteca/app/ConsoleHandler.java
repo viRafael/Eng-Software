@@ -40,12 +40,13 @@ public class ConsoleHandler {
         }
     }
 
+    // Popula com os dados de teste da atividade
     public void popular() {
         BibliotecaDados dados = BibliotecaDados.getInstance();
-        dados.addUsuarios(new AlunoGraduacao(1, "Aluno 1"));
-        dados.addUsuarios(new PosGraduacao(2, "Aluno 2"));
-        dados.addUsuarios(new Professor(3, "Professor 1"));
-        dados.addUsuarios(new AlunoGraduacao(4, "Aluno 3"));
+        dados.addUsuarios(new AlunoGraduacao(123, "João da Silva"));
+        dados.addUsuarios(new PosGraduacao(456, "Luiz Fernando Rodrigues"));
+        dados.addUsuarios(new AlunoGraduacao(789, "Pedro Paulo"));
+        dados.addUsuarios(new Professor(100, "Carlos Lucena"));
 
         dados.addLivro(new Livro(100, "Engenharia de Software", "Addison-Wesley", null, 6, 2000));
         dados.addLivro(new Livro(101, "UML - Guia do Usuário", "Campus", null, 2, 2002));
@@ -53,6 +54,8 @@ public class ConsoleHandler {
         dados.addLivro(new Livro(201, "agile software development", "Addison-Wesley", null, 2, 2002));
         dados.addLivro(new Livro(300, "Refactoring", "Addison-Wesley", null, 6, 2000));
         dados.addLivro(new Livro(301, "Software Metric", "aleatorio 1", null, 2, 1990));
+
+        // Esses são extras
         dados.addLivro(new Livro(400, "The Mythical", "Campus", null, 2, 2002));
         dados.addLivro(new Livro(401, "The Psychology of Computer Programming", "Addison-Wesley", null, 2, 1998));
 

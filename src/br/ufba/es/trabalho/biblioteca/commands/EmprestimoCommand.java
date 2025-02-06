@@ -12,6 +12,7 @@ import br.ufba.es.trabalho.biblioteca.utils.Validador;
 
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class EmprestimoCommand implements Command {
     public void execute(CarregadorParametros carregadorParametros) {
@@ -49,11 +50,13 @@ public class EmprestimoCommand implements Command {
         }
 
         // Retorna um exemplar disponível
-        Exemplar exemplar = (Exemplar) livro.findAvailableExemplar();
-        if (exemplar == null) {
+        Stream<Exemplar> exemplaresDisponiveis = livro.exemplaresDisponiveis();
+        Optional<Exemplar> primeiroOpt = exemplaresDisponiveis.findFirst();
+        if (primeiroOpt.isEmpty()) {
             System.out.println("Empréstimo não realizado: Não há exemplares disponíveis.");
             return;
         }
+        Exemplar exemplar = primeiroOpt.get();
 
         // Realiza o empréstimo
         LocalDate start = LocalDate.now();
