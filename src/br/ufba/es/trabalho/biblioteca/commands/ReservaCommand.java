@@ -36,4 +36,9 @@ public class ReservaCommand implements Command {
         // Mensagem de sucesso
         System.out.println("Reserva realizada com sucesso por " + usuario.getName() + " - Livro: " + livro.getTitle());
     }
+
+    @Override
+    public String getDescription() {
+        return "Reserva um livro";
+    }
 }

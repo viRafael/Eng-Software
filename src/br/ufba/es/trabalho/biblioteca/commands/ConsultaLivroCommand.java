@@ -46,4 +46,9 @@ public class ConsultaLivroCommand implements Command  {
             }
         }
     }
+
+    @Override
+    public String getDescription() {
+        return "Consulta o estado de um livro";
+    }
 }

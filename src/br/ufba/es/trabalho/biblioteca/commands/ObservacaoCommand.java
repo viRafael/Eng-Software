@@ -7,4 +7,9 @@ public class ObservacaoCommand implements Command {
     public void execute(CarregadorParametros carregadorParametros) {
         // TODO: Implementar método
     }
+
+    @Override
+    public String getDescription() {
+        return "Faz o usuário receber notificacoes quando um livro for reservado mais que duas vezes";
+    }
 }

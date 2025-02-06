@@ -30,9 +30,9 @@ public class ConsoleHandler {
                     (argumentos.length > 2) ? argumentos[2] : null
             );
 
-            Command cmd = CommandFactory.getCommand(command);
+            Command cmd = CommandFactory.getCommand(command.toLowerCase());
             if (cmd == null) {
-                System.out.println("Comando não reconhecido.");
+                System.out.println("Comando não reconhecido. Digite 'ajuda' para ver os comandos disponíveis.");
                 continue;
             }
 

@@ -36,4 +36,9 @@ public class ConsultaUsuarioCommand implements Command {
             System.out.println("Data de reserva: " + reserva.getDate());
         }
     }
+
+    @Override
+    public String getDescription() {
+        return "Consulta o estado de um usuário";
+    }
 }

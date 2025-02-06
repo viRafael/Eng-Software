@@ -14,7 +14,8 @@ public class CommandFactory {
             "liv", new ConsultaLivroCommand(),
             "usu", new ConsultaUsuarioCommand(),
             "ntf", new ConsultaNotificacoesCommand(),
-            "sai", new SairCommand()
+            "sai", new SairCommand(),
+            "ajuda", new AjudaCommand()
     );
 
     public static Command getCommand(String cmd) {

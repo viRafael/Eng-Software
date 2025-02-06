@@ -42,5 +42,10 @@ public class DevolucaoCommand implements Command {
         // Se não existir, imprime mensagem de erro e retorna
         System.out.println("Devolução não realizada: O usuário não possui empréstimo em aberto deste livro.");
     }
+
+    @Override
+    public String getDescription() {
+        return "Devolve um livro";
+    }
 }
 

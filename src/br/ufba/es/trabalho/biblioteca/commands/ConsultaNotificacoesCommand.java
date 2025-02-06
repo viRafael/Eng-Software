@@ -19,4 +19,9 @@ public class ConsultaNotificacoesCommand implements Command {
 
         // TODO: Implementar a lógica de notificações
     }
+
+    @Override
+    public String getDescription() {
+        return "Consulta as notificacoes de um usuário";
+    }
 }

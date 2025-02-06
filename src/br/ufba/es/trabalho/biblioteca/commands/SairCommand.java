@@ -8,4 +8,9 @@ public class SairCommand implements Command {
         System.out.println("Comando saída, encerrando o sistema...");
         System.exit(0);
     }
+
+    @Override
+    public String getDescription() {
+        return "Finaliza o programa";
+    }
 }

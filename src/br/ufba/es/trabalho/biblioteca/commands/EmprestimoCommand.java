@@ -53,4 +53,9 @@ public class EmprestimoCommand implements Command {
 
         System.out.println("Empréstimo realizado com sucesso para " + user.getName() + " do Livro: " + livro.getTitle());
     }
+
+    @Override
+    public String getDescription() {
+        return "Realiza o empréstimo de um livro";
+    }
 }
