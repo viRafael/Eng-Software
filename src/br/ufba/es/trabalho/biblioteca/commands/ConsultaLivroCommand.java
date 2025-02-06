@@ -7,19 +7,22 @@ import br.ufba.es.trabalho.biblioteca.domain.Exemplar;
 import br.ufba.es.trabalho.biblioteca.domain.Livro;
 import br.ufba.es.trabalho.biblioteca.domain.Reserva;
 
+import java.util.Optional;
+
 public class ConsultaLivroCommand implements Command  {
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
         int codeLivro = Integer.parseInt(carregadorParametros.getParametroDois());
 
         BibliotecaDados dados = BibliotecaDados.getInstance();
-        Livro livro =  dados.findBookById(codeLivro);
+        Optional<Livro> livroOpt =  dados.findBookById(codeLivro);
 
         // Verifica se o livro existe
-        if (livro == null) {
+        if (livroOpt.isEmpty()) {
             System.out.println("Consulta não realizada: Livro inexistente.");
             return;
         }
+        Livro livro = livroOpt.get();
 
         // Imprime o título do livro
         System.out.println("Título: " + livro.getTitle());

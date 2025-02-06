@@ -33,5 +33,7 @@ public interface User {
     public int getCode();
 
     public String getName();
+
+    public String getTipoUsuario();
 }
  

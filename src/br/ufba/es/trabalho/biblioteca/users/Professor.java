@@ -80,6 +80,11 @@ public class Professor implements User, Observer {
         return this.name;
     }
 
+    @Override
+    public String getTipoUsuario() {
+        return "Professor";
+    }
+
     public int getNotificationCount() {
         return notificationCount;
     }

@@ -10,6 +10,7 @@ import br.ufba.es.trabalho.biblioteca.domain.enums.ExemplarStatus;
 import br.ufba.es.trabalho.biblioteca.users.User;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class EmprestimoCommand implements Command {
     public void execute(CarregadorParametros carregadorParametros) {
@@ -17,14 +18,16 @@ public class EmprestimoCommand implements Command {
         int codigoLivro = Integer.parseInt(carregadorParametros.getParametroDois());
 
         BibliotecaDados data = BibliotecaDados.getInstance();
-        User user = data.findUserById(codigoUser);
-        Livro livro = data.findBookById(codigoLivro);
+        Optional<User> userOpt = data.findUserById(codigoUser);
+        Optional<Livro> livroOpt = data.findBookById(codigoLivro);
 
         // Verifica se o usuário e o livro existem
-        if (user == null || livro == null) {
+        if (userOpt.isEmpty() || livroOpt.isEmpty()) {
             System.out.println("Empréstimo não realizado: Usuário ou livro inexistente.");
             return;
         }
+        User user = userOpt.get();
+        Livro livro = livroOpt.get();
 
         // Verifica se o usuário pode pegar emprestado o livro
         PoliticaEmprestimo policy = user.getPoliticaEmprestimo();

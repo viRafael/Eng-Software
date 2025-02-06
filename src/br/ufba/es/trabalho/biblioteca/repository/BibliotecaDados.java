@@ -5,6 +5,7 @@ import br.ufba.es.trabalho.biblioteca.users.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BibliotecaDados {
     private static BibliotecaDados instance;
@@ -26,22 +27,22 @@ public class BibliotecaDados {
     }
 
     // Métodos Utilitários
-    public User findUserById(int userId) {
+    public Optional<User> findUserById(int userId) {
         for (User user : this.users) {
             if (user.getCode() == userId){
-                return user;
+                return Optional.of(user);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
-    public Livro findBookById(int bookId) {
+    public Optional<Livro> findBookById(int bookId) {
         for (Livro livro : this.livros) {
             if (livro.getCode() == bookId){
-                return livro;
+                return Optional.of(livro);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     // Métodos add

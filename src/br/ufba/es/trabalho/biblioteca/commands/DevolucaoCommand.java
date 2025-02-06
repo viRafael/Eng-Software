@@ -9,6 +9,7 @@ import br.ufba.es.trabalho.biblioteca.domain.enums.ExemplarStatus;
 import br.ufba.es.trabalho.biblioteca.users.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DevolucaoCommand implements Command {
 
@@ -18,14 +19,16 @@ public class DevolucaoCommand implements Command {
         int codeLivro = Integer.parseInt(carregadorParametros.getParametroDois());
 
         BibliotecaDados dados = BibliotecaDados.getInstance();
-        User user = dados.findUserById(codeUsuario);
-        Livro livro = dados.findBookById(codeLivro);
+        Optional<User> userOpt = dados.findUserById(codeUsuario);
+        Optional<Livro> livroOpt = dados.findBookById(codeLivro);
 
         // Verifica se o usuário e o livro existem
-        if (user == null || livro == null) {
+        if (userOpt.isEmpty() || livroOpt.isEmpty()) {
             System.out.println("Devolução não realizada: Usuário ou livro inexistente.");
             return;
         }
+        Livro livro = livroOpt.get();
+        User user = userOpt.get();
 
         // Verifica se o emprestimo com esse user e book existe
         List<Exemplar> exemplaresDoLivro = livro.getExemplares();

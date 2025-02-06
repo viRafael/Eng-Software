@@ -78,4 +78,9 @@ public class PosGraduacao implements User {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public String getTipoUsuario() {
+        return "Aluno de pós-graduacão";
+    }
 }

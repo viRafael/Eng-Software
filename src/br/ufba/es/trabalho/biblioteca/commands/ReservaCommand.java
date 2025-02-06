@@ -6,21 +6,25 @@ import br.ufba.es.trabalho.biblioteca.domain.Livro;
 import br.ufba.es.trabalho.biblioteca.domain.Reserva;
 import br.ufba.es.trabalho.biblioteca.users.User;
 
+import java.util.Optional;
+
 public class ReservaCommand implements Command {
     @Override
     public void execute(CarregadorParametros carregadorParametros) {
         int userId = Integer.parseInt(carregadorParametros.getParametroUm());
         int bookId = Integer.parseInt(carregadorParametros.getParametroDois());
 
-        BibliotecaDados data = BibliotecaDados.getInstance();
-        User usuario = data.findUserById(userId);
-        Livro livro = data.findBookById(bookId);
+        BibliotecaDados dados = BibliotecaDados.getInstance();
+        Optional<User> userOpt = dados.findUserById(userId);
+        Optional<Livro> livroOpt = dados.findBookById(bookId);
 
         // Verifica se o usuário e o livro existem
-        if (usuario == null || livro == null) {
+        if (userOpt.isEmpty() || livroOpt.isEmpty()) {
             System.out.println("Reserva não realizada: Usuário ou livro inexistente.");
             return;
         }
+        Livro livro = livroOpt.get();
+        User usuario = userOpt.get();
 
         // Verifica se o usuario tem espaço para a reseva
         if (usuario.getReservas().size() >= 3) {
